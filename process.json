@@ -1,0 +1,17 @@
+{
+    "apps" : [{
+        "name" : "huaweicloud",
+        "script"      : "dist/server.js",
+        "instances" : "1",
+        "autorestart" : false,
+        "env": {
+            "NODE_ENV": "development"
+        },
+        "env_production" : {
+            "NODE_ENV": "production"
+        },
+        "env_beta" : {
+            "NODE_ENV": "beta"
+        }
+    }]
+}

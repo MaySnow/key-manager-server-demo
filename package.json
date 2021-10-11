@@ -1,0 +1,91 @@
+{
+  "name": "key-manager-server-demo",
+  "version": "1.0.0",
+  "description": "huaweicloud vod",
+  "main": "dist/server.js",
+  "scripts": {
+    "watch-server": "nodemon --ignore tests/ --watch src -e ts,tsx --exec ts-node src/server.ts",
+    "build-ts": "tsc",
+    "copy-static-assets": "ts-node copyStaticAssets.ts",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "serve": "node dist/server.js",
+    "build": "npm run lint && npm run build-ts && npm run copy-static-assets",
+    "start": "npm run serve",
+    "test:integration:heroku": "newman run integrationtests/node-koa-typescript.postman_collection.json -e integrationtests/env/heroku-dev.postman_environment.json",
+    "test:integration:local": "newman run integrationtests/node-koa-typescript.postman_collection.json -e integrationtests/env/local-dev.postman_environment.json",
+    "test:load": "locust --headless -u 50 -r 10 -t 60s -f loadtests/locustfile.py --host=https://node-typescript-koa-rest.herokuapp.com",
+    "test": "jest",
+    "test:coverage": "jest --collect-coverage",
+    "test:watch": "jest --watch",
+    "pro": "npm run build && pm2 start process.json --env production"
+  },
+  "engines": {
+    "node": "14.x.x",
+    "npm": "6.x.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaySnow/key-manager-server-demo.git"
+  },
+  "author": "mayxiaoyu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaySnow/key-manager-server-demo/issues"
+  },
+  "homepage": "https://github.com/MaySnow/key-manager-server-demo#readme",
+  "keywords": [
+    "typescript",
+    "koa",
+    "koa2",
+    "huaweicloud",
+    "vod"
+  ],
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@types/koa": "2.13.1",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa__router": "^8.0.4",
+    "@types/koa__cors": "^3.0.2",
+    "@types/node": "^14.14.37",
+    "@types/shelljs": "^0.8.8",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "shelljs": "^0.8.4",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@huaweicloud/huaweicloud-sdk-core": "^3.0.18-beta",
+    "@huaweicloud/huaweicloud-sdk-vod": "^3.0.18-beta",
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.0.0",
+    "class-validator": "^0.13.1",
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^6.1.0",
+    "koa-jwt": "^4.0.0",
+    "koa-swagger-decorator": "^1.6.4",
+    "node-ts-cache": "^4.3.4",
+    "node-ts-cache-storage-memory": "^4.3.4",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.32",
+    "winston": "^3.3.3"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>"
+    ],
+    "testMatch": [
+      "**/tests/**/*.+(ts|tsx|js)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+  }
+}
