@@ -12,7 +12,7 @@ export interface Config {
 }
 
 const isDevMode = process.env.NODE_ENV == "development";
-
+console.log("AK", process.env.AK)
 const config: Config = {
     port: +(process.env.PORT || 6888),
     debugLogging: isDevMode,
