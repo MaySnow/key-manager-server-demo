@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 import * as path from "path";
-
+console.log("<<<<<<")
 dotenv.config({ path: path.join(__dirname, "./.env") });
+console.log(">>>>>", process.env.PORT);
 
 export interface Config {
     port: number;
