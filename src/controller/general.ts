@@ -39,8 +39,8 @@ export default class GeneralController {
             throw new Error(`token 校验失败 ${token}`);
           }
           const result: any = await InitVodClient.showAssetCipher(asset_id);
-          if (!result || !result.dk) {
-            throw new Error(`获取 key 失败 ${result}`);
+          if (!result.dk) {
+            throw new Error(`获取 key 失败 ${JSON.stringify(result)}`);
           }
           dk = result.dk;
           // 缓存一分钟

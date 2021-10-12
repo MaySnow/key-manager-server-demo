@@ -21,8 +21,17 @@ class InitVodClient {
     // @ts-ignore: 第三方插件
     const request = new vod.ShowAssetCipherRequest();
     request.assetId = assetId; 
-    // @ts-ignore: 第三方插件
-    return this.vodClient.showAssetCipher(request);
+    return new Promise((resolve, reject) => {
+      // @ts-ignore: 第三方插件
+      this.vodClient.showAssetCipher(request).then(result => {
+        if (!result || !result.dk) {
+          return reject(result);
+        }
+        resolve(result);
+      }).catch((ex: any) => {
+        reject(ex);
+      });
+    })
   }
 }
 export default new InitVodClient();
