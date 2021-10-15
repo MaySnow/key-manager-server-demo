@@ -31,7 +31,7 @@ class InitVodClient {
       }).catch((ex: any) => {
         reject(ex);
       });
-    })
+    });
   }
 }
 export default new InitVodClient();

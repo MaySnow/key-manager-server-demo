@@ -17,7 +17,7 @@
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
     "test:watch": "jest --watch",
-    "pro": "npm run build-ts && npm run copy-static-assets && pm2 start process.json --env production"
+    "pro": "npm run build && npm run copy-static-assets && pm2 start process.json --env production"
   },
   "engines": {
     "node": "14.x.x",
